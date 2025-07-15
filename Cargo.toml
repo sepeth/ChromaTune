@@ -1,0 +1,34 @@
+[workspace]
+members = [
+    "shared",
+]
+resolver = "1"
+
+[workspace.package]
+authors = ["Red Badger Consulting Limited"]
+edition = "2021"
+repository = "https://github.com/redbadger/crux/"
+license = "Apache-2.0"
+keywords = ["crux", "crux_core", "cross-platform-ui", "ffi", "wasm"]
+rust-version = "1.80"
+
+[workspace.dependencies]
+anyhow = "1.0.98"
+crux_core = "0.15"
+crux_http = "0.15.0-rc2"
+serde = "1.0.219"
+
+[workspace.metadata.bin]
+cargo-xcode = { version = "=1.7.0" }
+
+[profile]
+
+[profile.wasm-dev]
+inherits = "dev"
+opt-level = 1
+
+[profile.server-dev]
+inherits = "dev"
+
+[profile.android-dev]
+inherits = "dev"
