@@ -30,6 +30,7 @@ targets:
           - UIInterfaceOrientationLandscapeLeft
           - UIInterfaceOrientationLandscapeRight
         UILaunchScreen: {}
+        NSMicrophoneUsageDescription: "This app needs access to your microphone to analyze and record sound."
     settings:
       OTHER_LDFLAGS: [-w]
       SWIFT_OBJC_BRIDGING_HEADER: generated/sharedFFI.h

@@ -6,7 +6,7 @@ class Core: ObservableObject {
   @Published var view: ViewModel
 
   init() {
-    self.view = try! .bincodeDeserialize(input: [UInt8](SimpleCounter.view()))
+    self.view = try! .bincodeDeserialize(input: [UInt8](dTune.view()))
   }
 
   func update(_ event: Event) {
@@ -21,7 +21,7 @@ class Core: ObservableObject {
   func processEffect(_ request: Request) {
     switch request.effect {
     case .render:
-      view = try! .bincodeDeserialize(input: [UInt8](SimpleCounter.view()))
+      view = try! .bincodeDeserialize(input: [UInt8](dTune.view()))
     }
   }
 }
