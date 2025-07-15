@@ -8,8 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		00D350C30780CCA574A64228 /* SharedTypes in Frameworks */ = {isa = PBXBuildFile; productRef = 975D191947E17A6E2B3C9A03 /* SharedTypes */; };
+		4CF73CD612B8EACBFCA6D16D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EAA35ED360FA33B8AFEA03 /* ContentView.swift */; };
 		8D94CAB09C0C3AD07FF62E0B /* libshared_static.a.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F6CCA3407B5617A25638F6D /* libshared_static.a.a */; };
 		99AC348BD3171213D1F19884 /* (null) in Resources */ = {isa = PBXBuildFile; fileRef = 0FA118C806B43AA7F0148F6F; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C638A0AAFEF1D0F8BAC9CC09 /* SimpleCounterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C318111809BC455FECD11C9 /* SimpleCounterApp.swift */; };
+		DC3561E66A7123B04DDE2035 /* core.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9ADB835044ECD64B701C6FF /* core.swift */; };
 		F46ABEDC8AA354613F7CA9A1 /* shared.udl in Sources */ = {isa = PBXBuildFile; fileRef = FECA5AA2F5A597ACEC87EA29 /* shared.udl */; };
 /* End PBXBuildFile section */
 
@@ -65,7 +68,10 @@
 
 /* Begin PBXFileReference section */
 		1B2197A5686C291B69BCB4DE /* SharedTypes */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SharedTypes; path = ../shared_types/generated/swift/SharedTypes; sourceTree = SOURCE_ROOT; };
+		1C318111809BC455FECD11C9 /* SimpleCounterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleCounterApp.swift; sourceTree = "<group>"; };
 		1E0D217AEEEC5E1269B4C883 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		B7EAA35ED360FA33B8AFEA03 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B9ADB835044ECD64B701C6FF /* core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = core.swift; sourceTree = "<group>"; };
 		CA94E5774929BDE0EC1087D2 /* dTune.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = dTune.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E915549C747C3C9E869491AC /* Shared */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Shared; path = ../shared/shared.xcodeproj; sourceTree = "<group>"; };
 		FECA5AA2F5A597ACEC87EA29 /* shared.udl */ = {isa = PBXFileReference; path = shared.udl; sourceTree = "<group>"; };
@@ -120,7 +126,10 @@
 		8C4FBF49C847728677FF4C2A /* dTune */ = {
 			isa = PBXGroup;
 			children = (
+				B7EAA35ED360FA33B8AFEA03 /* ContentView.swift */,
+				B9ADB835044ECD64B701C6FF /* core.swift */,
 				1E0D217AEEEC5E1269B4C883 /* Info.plist */,
+				1C318111809BC455FECD11C9 /* SimpleCounterApp.swift */,
 			);
 			path = dTune;
 			sourceTree = "<group>";
@@ -241,6 +250,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CF73CD612B8EACBFCA6D16D /* ContentView.swift in Sources */,
+				C638A0AAFEF1D0F8BAC9CC09 /* SimpleCounterApp.swift in Sources */,
+				DC3561E66A7123B04DDE2035 /* core.swift in Sources */,
 				F46ABEDC8AA354613F7CA9A1 /* shared.udl in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
