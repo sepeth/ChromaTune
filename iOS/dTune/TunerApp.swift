@@ -1,7 +1,7 @@
 import SwiftUI
 
 @main
-struct SimpleCounterApp: App {
+struct TunerApp: App {
   var body: some Scene {
     WindowGroup {
       ContentView(core: Core())
