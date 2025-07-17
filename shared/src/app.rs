@@ -28,7 +28,7 @@ pub struct ViewModel {
 }
 
 #[derive(Default)]
-pub struct Counter;
+pub struct ChromaTune;
 
 // Populated from https://www.seventhstring.com/resources/notefrequencies.html
 const HZ_PITCH_PAIRS: [(f64, &str); 6] = [
@@ -73,7 +73,7 @@ fn find_pitch(hz: f64) -> (&'static str, f64) {
     return (pitch, diff);
 }
 
-impl App for Counter {
+impl App for ChromaTune {
     type Event = Event;
     type Model = Model;
     type ViewModel = ViewModel;
@@ -88,12 +88,8 @@ impl App for Counter {
     ) -> Command<Effect, Event> {
         match event {
             Event::DetectPitch(data) => {
-                if data.len() < 10 {
-                    println!("Error: Input data is too small for pitch detection.");
-                } else {
-                    let (hz, _amplitude) = pitch::detect(&data);
-                    model.readings.push_back(hz);
-                }
+                let (hz, _amplitude) = pitch::detect(&data);
+                model.readings.push_back(hz);
             }
         }
 

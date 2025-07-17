@@ -1,5 +1,5 @@
 use crux_core::typegen::TypeGen;
-use shared::Counter;
+use shared::ChromaTune;
 use std::path::PathBuf;
 
 fn main() -> anyhow::Result<()> {
@@ -7,7 +7,7 @@ fn main() -> anyhow::Result<()> {
 
     let mut typegen = TypeGen::new();
 
-    typegen.register_app::<Counter>()?;
+    typegen.register_app::<ChromaTune>()?;
 
     let output_root = PathBuf::from("./generated");
 
