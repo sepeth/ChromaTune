@@ -76,7 +76,7 @@
 		93156F252E2703C70066E12F /* AudioInputManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioInputManager.swift; sourceTree = "<group>"; };
 		B7EAA35ED360FA33B8AFEA03 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B9ADB835044ECD64B701C6FF /* core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = core.swift; sourceTree = "<group>"; };
-		CA94E5774929BDE0EC1087D2 /* dTune.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dTune.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA94E5774929BDE0EC1087D2 /* ChromaTune.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChromaTune.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E915549C747C3C9E869491AC /* Shared */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Shared; path = ../shared/shared.xcodeproj; sourceTree = "<group>"; };
 		FECA5AA2F5A597ACEC87EA29 /* shared.udl */ = {isa = PBXFileReference; lastKnownFileType = text; path = shared.udl; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -113,7 +113,7 @@
 		75B109CDC4BCB90A3484FFD7 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CA94E5774929BDE0EC1087D2 /* dTune.app */,
+				CA94E5774929BDE0EC1087D2 /* ChromaTune.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -127,7 +127,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		8C4FBF49C847728677FF4C2A /* dTune */ = {
+		8C4FBF49C847728677FF4C2A /* ChromaTune */ = {
 			isa = PBXGroup;
 			children = (
 				93156F252E2703C70066E12F /* AudioInputManager.swift */,
@@ -136,13 +136,13 @@
 				1E0D217AEEEC5E1269B4C883 /* Info.plist */,
 				1C318111809BC455FECD11C9 /* TunerApp.swift */,
 			);
-			path = dTune;
+			path = ChromaTune;
 			sourceTree = "<group>";
 		};
 		9ED989FFD9ED775F4A850337 = {
 			isa = PBXGroup;
 			children = (
-				8C4FBF49C847728677FF4C2A /* dTune */,
+				8C4FBF49C847728677FF4C2A /* ChromaTune */,
 				402161256DA4129AD54151B2 /* Packages */,
 				ACE9389B9B8B907B1930A29B /* src */,
 				75B109CDC4BCB90A3484FFD7 /* Products */,
@@ -162,9 +162,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3CA43B984FB579BCFD64E5AE /* dTune */ = {
+		3CA43B984FB579BCFD64E5AE /* ChromaTune */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B46F85F605B81485B5B921DF /* Build configuration list for PBXNativeTarget "dTune" */;
+			buildConfigurationList = B46F85F605B81485B5B921DF /* Build configuration list for PBXNativeTarget "ChromaTune" */;
 			buildPhases = (
 				B7750039308A72D458BB26EC /* Sources */,
 				0686E2018D9330E5D8D14B35 /* Resources */,
@@ -177,12 +177,12 @@
 				5C58DFECB7311A5B63135E57 /* PBXTargetDependency */,
 				121897D14C0C2AE79093B524 /* PBXTargetDependency */,
 			);
-			name = dTune;
+			name = ChromaTune;
 			packageProductDependencies = (
 				975D191947E17A6E2B3C9A03 /* SharedTypes */,
 			);
-			productName = dTune;
-			productReference = CA94E5774929BDE0EC1087D2 /* dTune.app */;
+			productName = ChromaTune;
+			productReference = CA94E5774929BDE0EC1087D2 /* ChromaTune.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -194,7 +194,7 @@
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1640;
 			};
-			buildConfigurationList = CFA669DE865A7B734E346621 /* Build configuration list for PBXProject "dTune" */;
+			buildConfigurationList = CFA669DE865A7B734E346621 /* Build configuration list for PBXProject "ChromaTune" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -216,7 +216,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				3CA43B984FB579BCFD64E5AE /* dTune */,
+				3CA43B984FB579BCFD64E5AE /* ChromaTune */,
 			);
 		};
 /* End PBXProject section */
@@ -285,7 +285,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = H78YB3MV7M;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				INFOPLIST_FILE = dTune/Info.plist;
+				INFOPLIST_FILE = ChromaTune/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -295,7 +295,7 @@
 					"-w",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = sepeth.dTune.dTune;
+				PRODUCT_BUNDLE_IDENTIFIER = sepeth.ChromaTune.ChromaTune;
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = generated/sharedFFI.h;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -365,7 +365,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = H78YB3MV7M;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				INFOPLIST_FILE = dTune/Info.plist;
+				INFOPLIST_FILE = ChromaTune/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -375,7 +375,7 @@
 					"-w",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = sepeth.dTune.dTune;
+				PRODUCT_BUNDLE_IDENTIFIER = sepeth.ChromaTune.ChromaTune;
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = generated/sharedFFI.h;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -448,7 +448,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B46F85F605B81485B5B921DF /* Build configuration list for PBXNativeTarget "dTune" */ = {
+		B46F85F605B81485B5B921DF /* Build configuration list for PBXNativeTarget "ChromaTune" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				864F66C2514D8440EB5C15FC /* Debug */,
@@ -457,7 +457,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		CFA669DE865A7B734E346621 /* Build configuration list for PBXProject "dTune" */ = {
+		CFA669DE865A7B734E346621 /* Build configuration list for PBXProject "ChromaTune" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F3A12CD2A5B963811A7A94DC /* Debug */,

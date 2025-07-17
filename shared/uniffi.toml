@@ -1,5 +1,5 @@
 [bindings.kotlin]
-package_name = "sepeth.dTune"
+package_name = "sepeth.ChromaTune"
 cdylib_name = "shared"
 
 [bindings.swift]
