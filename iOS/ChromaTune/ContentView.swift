@@ -9,8 +9,8 @@ struct ContentView: View {
     VStack {
       VStack {
         Text(core.view.pitch)
-              .font(.title)
-              .bold(true)
+          .font(.title)
+          .bold(true)
         Text(core.view.diff)
       }
     }
@@ -25,31 +25,6 @@ struct ContentView: View {
       } catch {
         print("Error starting audio monitoring: \(error)")
       }
-    }
-  }
-}
-
-struct ActionButton: View {
-  var label: String
-  var color: Color
-  var action: () -> Void
-
-  init(label: String, color: Color, action: @escaping () -> Void) {
-    self.label = label
-    self.color = color
-    self.action = action
-  }
-
-  var body: some View {
-    Button(action: action) {
-      Text(label)
-        .fontWeight(.bold)
-        .font(.body)
-        .padding(EdgeInsets(top: 10, leading: 15, bottom: 10, trailing: 15))
-        .background(color)
-        .cornerRadius(10)
-        .foregroundColor(.white)
-        .padding()
     }
   }
 }

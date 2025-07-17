@@ -18,7 +18,7 @@ class AudioInputManager: ObservableObject {
         let frameLength = Int(buffer.frameLength)
         var newSamples: [Double] = []
         for i in 0..<frameLength {
-          // FIXME: once rust pitch crate uses generics, we can just send the f32 without conversion.
+          // FIXME: once rust pitch crate uses generics, we can just send f32 values without conversion.
           // Perhaps monitor before and after if this makes any difference on the CPU.
           newSamples.append(Double(channel0[i]))
         }
