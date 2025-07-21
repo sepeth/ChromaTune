@@ -1,6 +1,4 @@
 mod core;
-mod http;
-mod sse;
 
 use std::sync::Arc;
 
@@ -13,19 +11,22 @@ use shared::{Effect, Event};
 
 #[derive(Parser, Clone)]
 enum Command {
-    Get,
-    Inc,
-    Dec,
-    Watch,
+    DetectPitch(DetectPitchArgs),
+}
+
+#[derive(Parser, Clone)]
+struct DetectPitchArgs {
+    path: String,
 }
 
 impl From<Command> for Event {
     fn from(cmd: Command) -> Self {
         match cmd {
-            Command::Get => Event::Get,
-            Command::Inc => Event::Increment,
-            Command::Dec => Event::Decrement,
-            Command::Watch => Event::StartWatch,
+            Command::DetectPitch(args) => {
+                let (samples, _sample_rate) =
+                    wavers::read(&args.path).expect("Failed to read WAV file");
+                Event::DetectPitch(samples.to_vec())
+            }
         }
     }
 }
@@ -55,11 +56,10 @@ async fn main() -> Result<()> {
     core::update(&core, event, &Arc::new(tx))?;
 
     while let Ok(effect) = rx.recv() {
-        if let Effect::Render(_) = effect {
-            let view = core.view();
-
-            if view.confirmed {
-                println!("{text}", text = view.text);
+        match effect {
+            Effect::Render(_) => {
+                let view = core.view();
+                println!("{}", view.pitch);
             }
         }
     }
