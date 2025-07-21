@@ -23,9 +23,9 @@ impl From<Command> for Event {
     fn from(cmd: Command) -> Self {
         match cmd {
             Command::DetectPitch(args) => {
-                let (samples, _sample_rate) =
+                let (samples, sample_rate) =
                     wavers::read(&args.path).expect("Failed to read WAV file");
-                Event::DetectPitch(samples.to_vec())
+                Event::DetectPitch(samples.to_vec(), sample_rate as f64)
             }
         }
     }
@@ -59,7 +59,8 @@ async fn main() -> Result<()> {
         match effect {
             Effect::Render(_) => {
                 let view = core.view();
-                println!("{}", view.pitch);
+                println!("{} (pitch)", view.pitch);
+                println!("{} (pitch-detector)", view.pd_pitch);
             }
         }
     }

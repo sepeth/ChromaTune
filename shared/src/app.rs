@@ -4,11 +4,12 @@ use crux_core::{
     render::{render, RenderOperation},
     Command,
 };
+use pitch_detector::{note::detect_note, pitch::HannedFftDetector};
 use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize, Clone, Debug)]
 pub enum Event {
-    DetectPitch(Vec<f64>),
+    DetectPitch(Vec<f64>, f64),
 }
 
 #[effect(typegen)]
@@ -18,13 +19,27 @@ pub enum Effect {
 
 #[derive(Default)]
 pub struct Model {
+    // Values detected via pitch crate
     readings: CircularBuffer<4, f64>,
+    pitches: CircularBuffer<4, &'static str>,
+    diff: f64,
+
+    // Values detected via pitch-detector
+    // Not making these circular buffers yet because this is just for comparing
+    // the two crates currently, using this as an alternative to compare the results
+    pd_pitch: String,
+    pd_diff: f64,
 }
 
 #[derive(Serialize, Deserialize, Clone, Default)]
 pub struct ViewModel {
+    // Values detected via pitch crate
     pub pitch: String,
-    pub diff: String,
+    pub diff: f64,
+
+    // Values detected via pitch-detector
+    pub pd_pitch: String,
+    pub pd_diff: f64,
 }
 
 // Populated from https://www.seventhstring.com/resources/notefrequencies.html
@@ -91,9 +106,24 @@ impl crux_core::App for App {
         _caps: &(), // will be deprecated, so prefix with underscore for now
     ) -> Command<Effect, Event> {
         match event {
-            Event::DetectPitch(data) => {
+            Event::DetectPitch(data, sample_rate) => {
+                // pitch crate
                 let (hz, _amplitude) = pitch::detect(&data);
                 model.readings.push_back(hz);
+                let (pitch, diff) = if let Some(hz) = model.readings.back() {
+                    find_pitch(*hz)
+                } else {
+                    ("", 0.)
+                };
+                model.pitches.push_back(pitch);
+                model.diff = diff;
+
+                // pitch-detector crate
+                let mut detector = HannedFftDetector::default();
+                if let Some(note) = detect_note(&data, &mut detector, sample_rate) {
+                    model.pd_pitch = format!("{}{}", note.note_name, note.octave);
+                    model.pd_diff = note.cents_offset;
+                }
             }
         }
 
@@ -101,14 +131,11 @@ impl crux_core::App for App {
     }
 
     fn view(&self, model: &Self::Model) -> Self::ViewModel {
-        let (pitch, diff) = if let Some(hz) = model.readings.back() {
-            find_pitch(*hz)
-        } else {
-            ("", 0.)
-        };
         ViewModel {
-            pitch: String::from(pitch),
-            diff: String::from(format!("{:.2}", diff)),
+            pitch: String::from(model.pitches.back().map_or("", |p| p)),
+            diff: model.diff,
+            pd_pitch: model.pd_pitch.clone(),
+            pd_diff: model.pd_diff,
         }
     }
 }

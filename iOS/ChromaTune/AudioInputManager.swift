@@ -2,6 +2,15 @@ import AVFoundation
 
 class AudioInputManager: ObservableObject {
   private var audioEngine = AVAudioEngine()
+  private let bufferSize: UInt32
+  private let format: AVAudioFormat
+  public let sampleRate: Double
+
+  init(bufferSize: UInt32 = 1024) {
+    self.bufferSize = bufferSize
+    self.format = audioEngine.inputNode.outputFormat(forBus: 0)
+    self.sampleRate = format.sampleRate
+  }
 
   func startMonitoring() async throws -> AsyncStream<[Double]>? {
     let granted = await AVAudioApplication.requestRecordPermission()
@@ -9,9 +18,8 @@ class AudioInputManager: ObservableObject {
       return nil
     }
 
-    let format = audioEngine.inputNode.outputFormat(forBus: 0)
     let audioStream = AsyncStream<[Double]> { continuation in
-      audioEngine.inputNode.installTap(onBus: 0, bufferSize: 1024, format: format) {
+      audioEngine.inputNode.installTap(onBus: 0, bufferSize: self.bufferSize, format: self.format) {
         [] (buffer, audioTime) in
         guard let channelData = buffer.floatChannelData else { return }
         let channel0 = channelData[0]

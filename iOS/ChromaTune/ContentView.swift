@@ -3,7 +3,7 @@ import SwiftUI
 
 struct ContentView: View {
   @ObservedObject var core: Core
-  @StateObject private var audioInputManager = AudioInputManager()
+  @StateObject private var audioInputManager = AudioInputManager(bufferSize: 1024)
 
   var body: some View {
     VStack {
@@ -11,7 +11,7 @@ struct ContentView: View {
         Text(core.view.pitch)
           .font(.title)
           .bold(true)
-        Text(core.view.diff)
+        Text(String(core.view.diff))
       }
     }
 
@@ -19,7 +19,7 @@ struct ContentView: View {
       do {
         if let audioStream = try await audioInputManager.startMonitoring() {
           for await audioData in audioStream {
-            core.update(.detectPitch(audioData))
+            core.update(.detectPitch(audioData, audioInputManager.sampleRate))
           }
         }
       } catch {
