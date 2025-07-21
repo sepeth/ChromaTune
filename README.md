@@ -12,12 +12,12 @@ cargo build
 
 Open the `iOS/ChromaTune.xcodeproj` in Xcode, and run.
 
-## Testing the tuner via the CLI:
+## Testing the tuner via the CLI
 
 In the `cli/` dir, run:
 
 ```sh
-cargo run detect-pitch --  ../resources/E2.wav      󱃾 qsk 21:08:33
+cargo run detect-pitch -- ../resources/E2.wav
 ```
 
 We should see output similar to:

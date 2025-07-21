@@ -37,6 +37,17 @@ const HZ_PITCH_PAIRS: [(f64, &str); 6] = [
     (329.6, "E4"),
 ];
 
+fn clamp<T: PartialOrd>(input: T, min: T, max: T) -> T {
+    debug_assert!(min <= max, "min must be less than or equal to max");
+    if input < min {
+        min
+    } else if input > max {
+        max
+    } else {
+        input
+    }
+}
+
 fn find_pitch(hz: f64) -> (&'static str, f64) {
     // Find the range that the hz argument in
     let mut idx = 0;
@@ -48,26 +59,19 @@ fn find_pitch(hz: f64) -> (&'static str, f64) {
         }
     }
 
-    if idx >= HZ_PITCH_PAIRS.len() {
-        idx = HZ_PITCH_PAIRS.len() - 1;
-    }
-    // We have the range (hz is in between idx and idx+1)
-    let (prev_hz, prev_pitch) = HZ_PITCH_PAIRS[idx];
-    let next_pair = if (idx + 1) < HZ_PITCH_PAIRS.len() {
-        Some(HZ_PITCH_PAIRS[idx + 1])
-    } else {
-        None
-    };
+    idx = clamp(idx, 1, HZ_PITCH_PAIRS.len() - 1);
 
-    let mut pitch = prev_pitch;
-    let mut diff = hz - prev_hz;
-    if let Some((next_hz, next_pitch)) = next_pair {
-        if (next_hz - hz) < diff {
-            pitch = next_pitch;
-            diff = next_hz - hz;
-        }
+    // We have the range (hz is in between idx-1 and idx)
+    let (prev_hz, prev_pitch) = HZ_PITCH_PAIRS[idx - 1];
+    let (curr_hz, curr_pitch) = HZ_PITCH_PAIRS[idx];
+    let prev_diff = hz - prev_hz;
+    let curr_diff = curr_hz - hz;
+
+    if prev_diff < curr_diff {
+        (prev_pitch, prev_diff)
+    } else {
+        (curr_pitch, curr_diff)
     }
-    return (pitch, diff);
 }
 
 #[derive(Default)]
