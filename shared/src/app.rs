@@ -2,7 +2,7 @@ use circular_buffer::CircularBuffer;
 use crux_core::{
     macros::effect,
     render::{render, RenderOperation},
-    App, Command,
+    Command,
 };
 use serde::{Deserialize, Serialize};
 
@@ -26,9 +26,6 @@ pub struct ViewModel {
     pub pitch: String,
     pub diff: String,
 }
-
-#[derive(Default)]
-pub struct ChromaTune;
 
 // Populated from https://www.seventhstring.com/resources/notefrequencies.html
 const HZ_PITCH_PAIRS: [(f64, &str); 6] = [
@@ -73,7 +70,10 @@ fn find_pitch(hz: f64) -> (&'static str, f64) {
     return (pitch, diff);
 }
 
-impl App for ChromaTune {
+#[derive(Default)]
+pub struct App;
+
+impl crux_core::App for App {
     type Event = Event;
     type Model = Model;
     type ViewModel = ViewModel;
