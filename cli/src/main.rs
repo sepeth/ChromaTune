@@ -67,3 +67,47 @@ async fn main() -> Result<()> {
 
     Ok(())
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    const TEST_CASES: &[(&str, &str)] = &[
+        ("../resources/E2.wav", "E2"),
+        ("../resources/A2.wav", "A2"),
+        ("../resources/D3.wav", "D3"),
+        ("../resources/G3.wav", "G3"),
+        ("../resources/B3.wav", "B3"),
+        ("../resources/E4.wav", "E4"),
+    ];
+
+    #[tokio::test]
+    async fn test_primary_pitch_detection() {
+        for (wav_file, expected_pitch) in TEST_CASES {
+            let (samples, sample_rate) =
+                wavers::read(wav_file).expect(&format!("Failed to read WAV file: {}", wav_file));
+
+            let event = Event::DetectPitch(samples.to_vec(), sample_rate as f64);
+
+            let core = core::new();
+            let (tx, rx) = unbounded::<Effect>();
+
+            core::update(&core, event, &Arc::new(tx)).expect("Failed to process event");
+
+            // Process the render effect
+            while let Ok(effect) = rx.recv() {
+                match effect {
+                    Effect::Render(_) => {
+                        let view = core.view();
+                        assert_eq!(
+                            view.pitch, *expected_pitch,
+                            "Pitch detection failed for {}. Expected: {}, Got: {}",
+                            wav_file, expected_pitch, view.pitch
+                        );
+                        println!("✓ {} detected correctly as {}", wav_file, expected_pitch);
+                    }
+                }
+            }
+        }
+    }
+}

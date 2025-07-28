@@ -29,3 +29,12 @@ E2
 ```
 
 Given the note played in the wav file is E2, it is important we see `E2` here.
+
+
+## Run tests
+
+```sh
+cargo test
+```
+
+TODO: Add tests for Swift code.
