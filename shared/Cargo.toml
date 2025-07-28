@@ -22,7 +22,7 @@ uniffi = "0.29.2"
 pitch = "0.2.0"
 wasm-bindgen = "0.2.100"
 circular-buffer = "1.1.0"
-pitch-detector = "0.3.1"
+pitch-detector = { git = "https://github.com/mherrerarendon/pitch-detector" }
 
 [target.uniffi-bindgen.dependencies]
 uniffi = { version = "0.29.2", features = ["cli"] }
